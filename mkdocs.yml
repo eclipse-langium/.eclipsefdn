@@ -1,11 +1,11 @@
-site_name: Otterdog configuration @ {{ org }}
-site_description: Otterdog configuration @ {{ org }}
+site_name: Otterdog configuration @ eclipse-langium
+site_description: Otterdog configuration @ eclipse-langium
 strict: false
 
-site_url: https://{{ org }}.github.io/.eclipsefdn/
+site_url: https://eclipse-langium.github.io/.eclipsefdn/
 
-repo_name: {{ org }}/.eclipsefdn
-repo_url: https://github.com/{{ org }}/.eclipsefdn/
+repo_name: eclipse-langium/.eclipsefdn
+repo_url: https://github.com/eclipse-langium/.eclipsefdn/
 
 docs_dir: ./docs
 site_dir: ./_site
