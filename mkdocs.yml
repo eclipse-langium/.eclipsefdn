@@ -1,0 +1,42 @@
+site_name: Otterdog configuration @ {{ org }}
+site_description: Otterdog configuration @ {{ org }}
+strict: false
+
+site_url: https://{{ org }}.github.io/.eclipsefdn/
+
+repo_name: {{ org }}/.eclipsefdn
+repo_url: https://github.com/{{ org }}/.eclipsefdn/
+
+docs_dir: ./docs
+site_dir: ./_site
+
+theme:
+  name: 'material'
+  custom_dir: docs/overrides
+  features:
+    - navigation.tabs
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - macros
+
+nav:
+  - Overview: index.md
+  - configuration.md
+  - playground.md
+
+not_in_nav: |
+  repo-*.md
+
+watch: []
+
+extra_css:
+  - stylesheets/extra.css
