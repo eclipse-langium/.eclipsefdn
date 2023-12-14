@@ -78,6 +78,9 @@ orgs.newOrg('eclipse-langium') {
       has_projects: false,
       has_wiki: false,
       web_commit_signoff_required: false,
+      workflows+: {
+        actions_can_approve_pull_request_reviews: false,
+      },
       environments: [
         orgs.newEnvironment('github-pages') {
           branch_policies+: [
