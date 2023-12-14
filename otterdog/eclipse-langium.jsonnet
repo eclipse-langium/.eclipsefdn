@@ -68,6 +68,25 @@ orgs.newOrg('eclipse-langium') {
         },
       ],
     },
+    orgs.newRepo('langium-previews') {
+      default_branch: "previews",
+      description: "Hosting PR previews for langium-website",
+      gh_pages_build_type: "legacy",
+      gh_pages_source_branch: "previews",
+      gh_pages_source_path: "/",
+      has_issues: false,
+      has_projects: false,
+      has_wiki: false,
+      web_commit_signoff_required: false,
+      environments: [
+        orgs.newEnvironment('github-pages') {
+          branch_policies+: [
+            "previews"
+          ],
+          deployment_branch_policy: "selected",
+        },
+      ],
+    },
     orgs.newRepo('langium-website') {
       allow_update_branch: false,
       delete_branch_on_merge: false,
