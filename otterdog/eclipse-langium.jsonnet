@@ -125,6 +125,12 @@ orgs.newOrg('eclipse-langium') {
           ],
           deployment_branch_policy: "selected",
         },
+        orgs.newEnvironment('pull-request-preview') {},
+      ],
+      secrets: [
+        orgs.newRepoSecret('DEPLOY_PREVIEW_TOKEN') {
+          value: "pass:bots/ecd.langium/github.com/preview-token",
+        },
       ],
     },
   ],
