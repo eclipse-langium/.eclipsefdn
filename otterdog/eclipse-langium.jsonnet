@@ -35,9 +35,6 @@ orgs.newOrg('eclipse-langium') {
         "vscode"
       ],
       web_commit_signoff_required: false,
-      workflows+: {
-        actions_can_approve_pull_request_reviews: false,
-      },
       webhooks: [
         orgs.newRepoWebhook('https://services.gitpod.io/apps/ghe/') {
           content_type: "json",
@@ -74,9 +71,6 @@ orgs.newOrg('eclipse-langium') {
       has_projects: false,
       has_wiki: false,
       web_commit_signoff_required: false,
-      workflows+: {
-        actions_can_approve_pull_request_reviews: false,
-      },
       environments: [
         orgs.newEnvironment('github-pages') {
           branch_policies+: [
@@ -104,9 +98,11 @@ orgs.newOrg('eclipse-langium') {
         "website"
       ],
       web_commit_signoff_required: false,
-      workflows+: {
-        actions_can_approve_pull_request_reviews: false,
-      },
+      secrets: [
+        orgs.newRepoSecret('DEPLOY_PREVIEW_TOKEN') {
+          value: "pass:bots/ecd.langium/github.com/preview-token",
+        },
+      ],
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main') {
           required_approving_review_count: 1,
@@ -121,12 +117,7 @@ orgs.newOrg('eclipse-langium') {
           ],
           deployment_branch_policy: "selected",
         },
-        orgs.newEnvironment('pull-request-preview') {},
-      ],
-      secrets: [
-        orgs.newRepoSecret('DEPLOY_PREVIEW_TOKEN') {
-          value: "pass:bots/ecd.langium/github.com/preview-token",
-        },
+        orgs.newEnvironment('pull-request-preview'),
       ],
     },
   ],
