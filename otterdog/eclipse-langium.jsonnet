@@ -18,8 +18,6 @@ orgs.newOrg('eclipse-langium') {
       has_projects: false,
       has_wiki: false,
       homepage: "https://langium.org/",
-      secret_scanning: "disabled",
-      secret_scanning_push_protection: "disabled",
       squash_merge_commit_title: "PR_TITLE",
       topics+: [
         "domain-specific-language",
@@ -84,8 +82,6 @@ orgs.newOrg('eclipse-langium') {
       has_projects: false,
       has_wiki: false,
       homepage: "https://langium.org/",
-      secret_scanning: "disabled",
-      secret_scanning_push_protection: "disabled",
       topics+: [
         "documentation",
         "language-engineering",
