@@ -14,6 +14,7 @@ orgs.newOrg('eclipse-langium') {
       allow_update_branch: false,
       delete_branch_on_merge: false,
       description: "Next-gen language engineering / DSL framework",
+      gh_pages_build_type: "workflow",
       has_discussions: true,
       has_projects: false,
       has_wiki: false,
@@ -51,6 +52,14 @@ orgs.newOrg('eclipse-langium') {
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main') {
           required_approving_review_count: 1,
+        },
+      ],
+      environments: [
+        orgs.newEnvironment('github-pages') {
+          branch_policies+: [
+            "main"
+          ],
+          deployment_branch_policy: "selected",
         },
       ],
     },
