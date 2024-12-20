@@ -1,6 +1,6 @@
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
-orgs.newOrg('eclipse-langium') {
+orgs.newOrg('ecd.langium', 'eclipse-langium') {
   settings+: {
     description: "",
     name: "Eclipse Langium",
