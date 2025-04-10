@@ -63,6 +63,8 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         },
       ],
     },
+    orgs.newRepo('langium-ai') {
+    },
     orgs.newRepo('langium-previews') {
       default_branch: "previews",
       description: "Hosting PR previews for langium-website",
