@@ -64,6 +64,12 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
       ],
     },
     orgs.newRepo('langium-ai') {
+      description: "A suite of tools for integrating AI applications with Langium DSLs",
+      topics+: [
+        "ai",
+        "language-engineering",
+        "typescript"
+      ],
     },
     orgs.newRepo('language-langium') {
       description: "Syntaxes for Langium.",
