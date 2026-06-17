@@ -67,10 +67,19 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
       ],
     },
     orgs.newRepo('langium-ai') {
-      branch_protection_rules: [
-        orgs.newBranchProtectionRule('main') {
-          required_approving_review_count: 1,
-        },
+      description: "AI toolbox for grounding LLMs on Langium DSLs with evaluation, constraints, and agent skills",
+      has_discussions: false,
+      has_projects: true,
+      has_wiki: false,
+      topics+: [
+        "agents",
+        "ai",
+        "domain-specific-language",
+        "dsl",
+        "evaluation",
+        "language-engineering",
+        "llm",
+        "typescript",
       ],
     },
     orgs.newRepo('language-langium') {
