@@ -1,3 +1,5 @@
+// Default settings:
+// https://github.com/EclipseFdn/otterdog-defaults/blob/main/otterdog-defaults.libsonnet
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('ecd.langium', 'eclipse-langium') {
@@ -29,19 +31,8 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         "vscode"
       ],
       web_commit_signoff_required: false,
-      webhooks: [
-        orgs.newRepoWebhook('https://services.gitpod.io/apps/ghe/') {
-          content_type: "json",
-          events+: [
-            "push"
-          ],
-          secret: "********",
-        },
-      ],
+      webhooks: [],
       secrets: [
-        orgs.newRepoSecret('NPM_TOKEN') {
-          value: "********",
-        },
         orgs.newRepoSecret('OVSX_TOKEN') {
           value: "********",
         },
@@ -55,18 +46,49 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         },
       ],
       environments: [
+        // Used by the docs.yml workflow to publish the API docs to GitHub Pages
         orgs.newEnvironment('github-pages') {
           branch_policies+: [
             "main"
           ],
           deployment_branch_policy: "selected",
         },
+        // Used by the publish.yml workflow to release packages
+        orgs.newEnvironment('publish') {
+          reviewers+: [
+            "@eclipse-langium/ecd-langium-committers"
+          ],
+          deployment_branch_policy: "selected",
+          branch_policies+: [
+            "main",
+            "maintenance/*"
+          ],
+        },
       ],
     },
     orgs.newRepo('langium-ai') {
+      description: "AI toolbox for grounding LLMs on Langium DSLs with evaluation, constraints, and agent skills",
+      has_discussions: false,
+      has_projects: true,
+      has_wiki: false,
+      topics+: [
+        "agents",
+        "ai",
+        "domain-specific-language",
+        "dsl",
+        "evaluation",
+        "language-engineering",
+        "llm",
+        "typescript",
+      ],
     },
     orgs.newRepo('language-langium') {
       description: "Syntaxes for Langium.",
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          required_approving_review_count: 1,
+        },
+      ],
     },
     orgs.newRepo('langium-previews') {
       default_branch: "previews",
@@ -125,10 +147,12 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         orgs.newEnvironment('pull-request-preview'),
       ],
     },
-  ],
-} + {
-  # snippet added due to 'https://github.com/EclipseFdn/otterdog-configs/blob/main/blueprints/add-dot-github-repo.yml'
-  _repositories+:: [
-    orgs.newRepo('.github')
+    orgs.newRepo('.github') {
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          required_approving_review_count: 1,
+        },
+      ],
+    },
   ],
 }
