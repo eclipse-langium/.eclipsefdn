@@ -81,6 +81,18 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         "llm",
         "typescript",
       ],
+      environments: [
+        orgs.newEnvironment('npm-publish') {
+          reviewers+: [
+            "@montymxb",
+            "@dhuebner"
+          ],
+          branch_policies+: [
+            "main"
+          ],
+          deployment_branch_policy: "selected",
+        }
+      ]
     },
     orgs.newRepo('language-langium') {
       description: "Syntaxes for Langium.",
