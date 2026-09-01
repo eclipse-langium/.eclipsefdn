@@ -94,6 +94,38 @@ orgs.newOrg('ecd.langium', 'eclipse-langium') {
         }
       ]
     },
+    orgs.newRepo('langium-ai-website') {
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      description: "Documentation website for ai.langium.org",
+      gh_pages_build_type: "workflow",
+      has_projects: false,
+      has_wiki: false,
+      homepage: "https://ai.langium.org/",
+      topics+: [
+        "ai",
+        "documentation",
+        "domain-specific-language",
+        "dsl",
+        "language-engineering",
+        "llm",
+        "website",
+      ],
+      web_commit_signoff_required: false,
+      branch_protection_rules: [
+        orgs.newBranchProtectionRule('main') {
+          required_approving_review_count: 1,
+        },
+      ],
+      environments: [
+        orgs.newEnvironment('github-pages') {
+          branch_policies+: [
+            "main"
+          ],
+          deployment_branch_policy: "selected",
+        },
+      ],
+    },
     orgs.newRepo('language-langium') {
       description: "Syntaxes for Langium.",
       branch_protection_rules: [
